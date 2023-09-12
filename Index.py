@@ -1,7 +1,7 @@
 # Proyecto de Conceptos Avanzados de programacion
 # Jonathan Gandara Salazar
 
-# Agreguen aqui sus nombres como comentario
+# Carlos Arguello Maladonado
 # Agreguen aqui sus nombres como comentario
 
 
