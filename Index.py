@@ -1,29 +1,27 @@
-# Proyecto de Conceptos Avanzados de programacion
-# Jonathan Gandara Salazar
-# Carlos Arguello Maladonado
-
-# Agreguen aqui sus nombres como comentario
+from primer_funcion import funcion_1
+from funciones.segunda_funcion import funcion_2
+from funciones.tercera_funcion import funcion_3
 
 def main():
-    opcion = ""
-    while opcion != "3":
-        print("Menú:")
-        print("1. Calcular fórmula general")
-        print("2. Otra opción")
-        print("3. Salir")
-        
-        opcion = input("Ingrese el número de la opción que desea ejecutar: ")
-        
-        if opcion == "1":
-            from formulaGeneral.formula_general import resolver_ecuacion_cuadratica
-        elif opcion == "2":
-            # Agrega aquí la lógica para la opción 2
-            pass
-        elif opcion == "3":
-            print("Saliendo del programa...")
-        else:
-            print("Opción inválida. Por favor, ingrese un número válido.")
-        print()  # Agrega una línea en blanco después de cada opción seleccionada
+    while True:
+        try:
+            a = float(input("Ingrese el valor de a: "))
+            b = float(input("Ingrese el valor de b: "))
+            c = float(input("Ingrese el valor de c: "))
+
+            resultado = funcion_1(a, b, c)
+            x1 = funcion_2(a, b, resultado)
+            x2 = funcion_3(a, b, resultado)
+
+
+            print("El valor del discriminante es:", resultado)
+            print("El valor de x1 es:", x1)
+            print("El valor de x2 es:", x2)
+            break
+        except ValueError as error:
+            print("Error:", error)
+            print("Por favor, ingrese valores válidos para a, b y c.")
 
 if __name__ == "__main__":
     main()
+
