@@ -52,23 +52,24 @@ horas_asignadas_por_materia_por_dia = {
 def asignar_materia(dia, hora, cve_materia):
     try:
         if hora < 7 or hora > 13:
-            raise ValueError(
-                "Error: La hora debe ser del turno matutino."
-            )
+            raise ValueError(colored(
+                "Error: La hora debe ser del turno matutino.", "red"
+            ))
+
         if horas_asignadas_por_materia[cve_materia] >= 5:
-            raise ValueError(
-                "Error: La materia ha alcanzado el limite de 5 horas asignadas por semana."
-            )
+            raise ValueError(colored(
+                "Error: La materia ha alcanzado el limite de 5 horas asignadas por semana.", "red"
+            ))
 
         if horas_asignadas_por_materia_por_dia[cve_materia][dia] >= 2:
-            raise ValueError(
-                "Error: La materia ha alcanzado el limite de 2 horas asignadas en este dia."
-            )
+            raise ValueError(colored(
+                "Error: La materia ha alcanzado el limite de 2 horas asignadas en este dia.", "red"
+            ))
 
         if horario[dia][hora] is not None:
-            raise ValueError(
-                "Error: La hora ya está ocupada por otra materia."
-            )
+            raise ValueError(colored(
+                "Error: La hora ya está ocupada por otra materia.", "red"
+            ))
 
         # Si no hay errores, se asigna la materia
         horario[dia][hora] = cve_materia
@@ -124,7 +125,7 @@ def main():
 
                 cve_materia = input("¿Clave?: ")
                 if cve_materia not in Materias:
-                    print("Clave no encontrada")
+                    print(colored("Clave no encontrada", "red"))
                 else:
                     hora = int(input("¿Hora? (7 a 13 hrs): "))
 
@@ -133,7 +134,11 @@ def main():
                         print(f"{i + 1}: {dia}")
                     dia = int(input("¿Dia?: "))
 
-                    asignar_materia(dias_semana[dia - 1], hora, cve_materia)
+                    if dia < 1 or dia > 5:
+                        print(colored("Solo dias entre semana", "red"))
+                    else:
+                        asignar_materia(
+                            dias_semana[dia - 1], hora, cve_materia)
 
             elif opcion == 2:
                 dia = int(input("¿Dia a imprimir?: "))
@@ -142,7 +147,7 @@ def main():
             elif opcion == 3:
                 print("Horario a un archivo")
                 guardar_horario_en_archivo()
-                print("Archivo listo")
+                print(colored("Archivo listo", "green"))
 
             elif opcion == 4:
                 break
