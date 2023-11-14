@@ -1,4 +1,5 @@
 import os
+import threading
 from termcolor import colored
 
 # diccionarios globales
@@ -142,11 +143,17 @@ def main():
 
             elif opcion == 2:
                 dia = int(input("¿Dia a imprimir?: "))
-                imprimir_horario(dia)
+                #imprimir_horario(dia)
+                hilo_1=threading.Thread(name="hilo1", target=imprimir_horario, args=(dia,)) #DECLARAMOS EL HILO, FIJAMOS EL OPBEJTIVO Y ARGS 
+                hilo_1.start() #INICIA EL HILO 
+                hilo_1.join() #SE ESPERA A QUE EL HIJO TERMINE DE EJECUTARSE 
 
             elif opcion == 3:
                 print("Horario a un archivo")
-                guardar_horario_en_archivo()
+               # guardar_horario_en_archivo()
+                hilo_2=threading.Thread(name="hilo2", target=guardar_horario_en_archivo) #DECLARAMOS EL HILO, FIJAMOS EL OPBEJTIVO Y ARGS 
+                hilo_2.start()#INICIA EL HILO 
+                hilo_2.join()#SE ESPERA A QUE EL HIJO TERMINE DE EJECUTARSE 
                 print(colored("Archivo listo", "green"))
 
             elif opcion == 4:
