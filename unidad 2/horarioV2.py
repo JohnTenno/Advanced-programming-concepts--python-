@@ -106,6 +106,7 @@ def guardar_horario_en_archivo():
 
 
 def main():
+    hilo_2=threading.Thread(name="hilo2", target=guardar_horario_en_archivo)
     while True:
         print("\nOpciones:")
         print("1: Ingresar Materia")
@@ -151,7 +152,7 @@ def main():
             elif opcion == 3:
                 print("Horario a un archivo")
                # guardar_horario_en_archivo()
-                hilo_2=threading.Thread(name="hilo2", target=guardar_horario_en_archivo) #DECLARAMOS EL HILO, FIJAMOS EL OPBEJTIVO Y ARGS 
+                #hilo_2=threading.Thread(name="hilo2", target=guardar_horario_en_archivo) #DECLARAMOS EL HILO, FIJAMOS EL OPBEJTIVO Y ARGS 
                 hilo_2.start()#INICIA EL HILO 
                 hilo_2.join()#SE ESPERA A QUE EL HIJO TERMINE DE EJECUTARSE 
                 print(colored("Archivo listo", "green"))
